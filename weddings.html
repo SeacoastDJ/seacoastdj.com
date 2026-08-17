@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weddings | Seacoast DJ</title>
+  <meta name="keywords" content="wedding DJ New England, wedding entertainment New Hampshire, wedding MC, ceremony sound, reception DJ, wedding planner support" />
+  <meta name="description" content="Wedding DJ services, ceremony sound, reception mixing, and event coordination from Seacoast DJ across New England." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="site-shell">
+  <header class="hero">
+    <nav class="top-nav">
+      <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
+      <div class="nav-links">
+        <a href="weddings.html">Weddings</a>
+        <a href="gear.html">Gear</a>
+        <a href="merch.html">Merch</a>
+        <a href="mixes.html">Mixes</a>
+        <a href="media.html">Media</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <section class="hero-copy">
+      <p class="eyebrow">Wedding Entertainment</p>
+      <h1>Crafting cinematic wedding soundtracks with precision and energy.</h1>
+      <p>From ceremony ambiance to the final dance, Seacoast DJ blends music, lighting, and seamless transitions to keep the celebration moving.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary floating-cta" href="contact.html">Check Availability</a>
+        <a class="btn btn-secondary" href="media.html">View Wedding Stories</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">What I bring</p>
+        <h2>Wedding DJ services for couples who want ceremony warmth and reception momentum.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="panel">
+          <h3>Seamless ceremony sound</h3>
+          <p>Wireless microphones, fade control, and a thoughtful ceremony setup for crisp vows and ambient music.</p>
+        </article>
+        <article class="panel">
+          <h3>Reception energy</h3>
+          <p>Dance floor pacing, guest interaction, and dynamic mixing designed to keep the room engaged all night.</p>
+        </article>
+        <article class="panel">
+          <h3>On-call coordination</h3>
+          <p>Easy communication with venues, photographers, and planners so your timeline stays on track.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Portfolio</p>
+        <h2>Real wedding moments captured through music, lighting, and atmosphere.</h2>
+      </div>
+      <div class="page-grid">
+        <article class="page-card">
+          <h3>Cocktail hour</h3>
+          <p>Curated background music for warm welcome moments and guest mingling.</p>
+        </article>
+        <article class="page-card">
+          <h3>Wedding Ceremony</h3>
+          <p>Personalized music selections, audio and microphone support where it matters most.</p>
+        </article>
+        <article class="page-card">
+          <h3>First dance</h3>
+          <p>Emotionally layered music and lighting cues that shape the room’s first big moment.</p>
+        </article>
+        <article class="page-card">
+          <h3>Reception timing</h3>
+          <p>Flawless transitions between dinner, introductions, speeches, and dance floor energy.</p>
+        </article>
+        <article class="page-card">
+          <h3>Guest requests</h3>
+          <p>Personalized selections, crowd reading, and polished MC support when it matters most.</p>
+        </article>
+      </div>
+    </section>
+    <section class="content-section" id="gallery">
+        <div class="section-heading">
+        <p class="eyebrow">Wedding Photo Gallery</p>
+        <h2>Unforgettable wedding moments and memories that last a lifetime.</h2>
+      </div>
+          <div class="photo-grid-3x3">
+            <div class="grid-item"><img src="images/wedding-pics/IMG_1565.JPG" alt="Wedding Ceremony moment"></div>
+            <div class="grid-item"><img src="images/wedding-pics/wedding-ThankYou-KaylaRobBean.jpg" alt="Seacoast DJ banner"></div>
+            <div class="grid-item"><img src="images/wedding-pics/sullivan-wedding-2015.jpg" alt="NH Lakes Region Wedding DJ for Ceremony, Dinner and Reception"></div>
+            <div class="grid-item"><img src="images/wedding-pics/IMG_1574.JPG" alt="Wedding Event DJ Professional"></div>
+            <div class="grid-item"><img src="images/event-surfers-with-smiles.jpg" alt="DJ and MC for Surfers with Smiles North Beach, Hampton NH"></div>
+            <div class="grid-item"><img src="images/wedding-pics/buckley wedding party outdoors cool.jpg" alt="Downtown Portsmouth NH Wedding DJ Party"></div>
+            <div class="grid-item"><img src="images/wedding-pics/monagram-name-in-lights.jpg" alt="Lighting Package Optional Monagram Name in Lights"></div>
+            <div class="grid-item"><img src="images/wedding-pics/IMG_3644.JPG" alt="Wedding photography moment"></div>
+            <div class="grid-item"><img src="images/2017-seacoastdj-banner.jpg" alt="The Knot Wedding Company badge"></div>
+          </div>
+        </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Seacoast DJ. Available for events across New England.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const images = [
+        'images/hero/wedding/SeacoastDJ_Background_Image.png',
+        'images/hero/wedding/seacoastDJ-2.jpg',
+        'images/hero/wedding/sullivan-wedding-2015.jpg'
+      ];
+      const slides = document.querySelectorAll('.hero-bg-rotator .slide');
+      if (!slides.length) return;
+
+      slides.forEach((slide, index) => {
+        if (images[index]) {
+          slide.style.backgroundImage = `url(${images[index]})`;
+        }
+      });
+
+      let current = 0;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 6500);
+    })();
+  </script>
+</body>
+</html>

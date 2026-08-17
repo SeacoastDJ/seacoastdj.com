@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeacoastDJ.com | Premium Mobile DJ</title>
+  <meta name="keywords" content="premium mobile DJ, New England wedding DJ, event entertainment, nightlife DJ, corporate party DJ" />
+  <meta name="description" content="Seacoast DJ delivers premium mobile DJ entertainment for weddings, nightlife, and private events across New England." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dj-stage-shell">
+  <nav class="top-nav">
+    <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
+    <div class="nav-links">
+      <a href="weddings.html">Weddings</a>
+      <a href="gear.html">Gear</a>
+      <a href="merch.html">Merch</a>
+      <a href="mixes.html">Mixes</a>
+      <a href="media.html">Media</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Main Perspective Viewport -->
+  <main class="viewport-3d-container">
+    <div class="space-3d-wrapper">
+      
+      <!-- BACKGROUND LAYER (Deepest space, moves slowest) -->
+      <div class="parallax-layer layer-background">
+        <div class="venue-ambient-wash"></div>
+        <div class="glow-orb magenta"></div>
+        <div class="glow-orb cyan"></div>
+      </div>
+
+      <!-- BACKGROUND LAYER (Deepest space, moves slowest) -->
+      <div class="parallax-layer layer-background">
+        <img src="assets/lights-speakers-overlay.png" alt="Seacoast DJ for Hire" id="deck-asset">
+        <div class="venue-ambient-wash"></div>
+        <div class="glow-orb magenta"></div>
+        <div class="glow-orb cyan"></div>
+      </div>
+
+      <!-- MIDGROUND LAYER 1: The Main Turntable/Mixer -->
+      <div class="scroll-layer layer-dj-deck">
+        <img src="images/overlays/RANE-ONE-MKII-LOW-ANGLE-FRONT-WEB.webp" alt="Seacoast DJ for Hire" id="deck-asset-2">
+      </div>
+
+      <!-- PINNED TEXT LAYER (Stays completely locked in place) -->
+      <div class="fixed-hero-typography">
+        <img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="hero-logo" />
+        <p class="branding-tag">ELEVATE YOUR EVENT</p>
+        <h1 class="main-title">SEACOASTDJ.COM</h1>
+        <p class="branding-tag">Premium Mobile Sound, Lighting, & Mixing</p>
+        <button class="booking-cta">CHECK AVAILABILITY</button>
+      </div>
+
+      <!-- CURSOR MOUSE-TRACKING AMBIENT GLOW ELEMENT -->
+      <div id="cursor-glow-pad"></div>
+
+      <!-- MAIN SCROLLABLE SECTIONS CONTAINER -->
+      <div class="main-content-flow">
+        <section class="content-section" id="gallery">
+          <h2 class="section-headline">LIVE ATMOSPHERE</h2>
+          <div class="photo-grid-3x3">
+            <div class="grid-item"><img src="images/wedding-pics/IMG_1565.JPG" alt="Wedding Ceremony moment"></div>
+            <div class="grid-item"><img src="images/wedding-pics/wedding-ThankYou-KaylaRobBean.jpg" alt="Seacoast DJ banner"></div>
+            <div class="grid-item"><img src="images/wedding-pics/sullivan-wedding-2015.jpg" alt="NH Lakes Region Wedding DJ for Ceremony, Dinner and Reception"></div>
+            <div class="grid-item"><img src="images/wedding-pics/IMG_1574.JPG" alt="Wedding Event DJ Professional"></div>
+            <div class="grid-item"><img src="images/event-surfers-with-smiles.jpg" alt="DJ and MC for Surfers with Smiles North Beach, Hampton NH"></div>
+            <div class="grid-item"><img src="images/wedding-pics/buckley wedding party outdoors cool.jpg" alt="Downtown Portsmouth NH Wedding DJ Party"></div>
+            <div class="grid-item"><img src="images/wedding-pics/monagram-name-in-lights.jpg" alt="Lighting Package Optional Monagram Name in Lights"></div>
+            <div class="grid-item"><img src="images/wedding-pics/IMG_3644.JPG" alt="Wedding photography moment"></div>
+            <div class="grid-item"><img src="images/2017-seacoastdj-banner.jpg" alt="The Knot Wedding Company badge"></div>
+          </div>
+        </section>
+
+        <section class="content-section" id="mixes">
+          <h2 class="section-headline">THE AUDIO ARCHIVE</h2>
+          <p class="section-subtext">Stream sample promotional live sets powered by the Rane Serato DJ engine for you enjoy and vibe to.</p>
+          <div class="audio-player-container">
+            <div class="mix-card">
+              <h3>Summer Open-Format Mix</h3>
+              <span class="mix-duration">64 Mins</span>
+              <button class="play-audio-btn">LAUNCH TRACK</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="social-hub">
+          <h2 class="section-headline">CONNECT ON SOCIALS</h2>
+          <div class="social-links-flex">
+            <a href="#" class="social-anchor">INSTAGRAM</a>
+            <a href="#" class="social-anchor">TIKTOK</a>
+            <a href="#" class="social-anchor">YOUTUBE</a>
+            <a href="#" class="social-anchor">FACEBOOK</a>
+          </div>
+          <button class="booking-cta trigger-popup-btn">BOOK NOW FOR YOUR EVENT</button>
+        </section>
+      </div>
+
+      <div class="modal-overlay" id="contact-modal">
+        <div class="modal-window">
+          <button class="close-modal-btn" id="close-form" type="button">&times;</button>
+          <h3 class="form-title">LOCK IN YOUR DATE</h3>
+          <form class="booking-form-element">
+            <div class="input-row">
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-row">
+              <input type="text" placeholder="Event Date (MM/DD/YYYY)" required>
+              <input type="text" placeholder="Venue Location">
+            </div>
+            <textarea placeholder="Tell us about your event vision... (Music styles, estimated headcount, sound needs)"></textarea>
+            <button type="submit" class="submit-form-btn">SUBMIT REQUEST</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- FOREGROUND LAYER (Pops out toward the viewer, flies away fastest) -->
+      <div class="scroll-layer layer-fg-lasers">
+        <div class="laser-beam beam-left"></div>
+        <div class="laser-beam beam-right"></div>
+        <img src="images/SEACOASTDJ-2025-LOGO.png" alt="Vinyl Record" id="vinyl-asset">
+      </div>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
