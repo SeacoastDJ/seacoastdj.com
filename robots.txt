@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /contact-config.php
+Disallow: /contact-handler.php
+Disallow: /images/_notes/
+Disallow: /assets/_notes/
+
+Sitemap: https://seacoastdj.com/sitemap.xml

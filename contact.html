@@ -6,17 +6,34 @@
     <title>Contact | Seacoast DJ</title>
     <meta name="keywords" content="contact Seacoast DJ, New England event DJ, wedding DJ contact, corporate party DJ, nightlife booking" />
     <meta name="description" content="Book Seacoast DJ for weddings, private events, promotions, and nightlife across New England." />
+    <link rel="canonical" href="https://seacoastdj.com/contact.html" />
+    <link rel="icon" type="image/png" href="images/SEACOASTDJ-2025-LOGO.png" />
+    <link rel="apple-touch-icon" href="images/SEACOASTDJ-2025-LOGO.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seacoastdj.com/contact.html" />
+    <meta property="og:title" content="Contact Seacoast DJ" />
+    <meta property="og:description" content="Book Seacoast DJ for weddings, private events, promotions, and nightlife across New England." />
+    <meta property="og:image" content="https://seacoastdj.com/images/event-surfers-with-smiles.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L387ZT3N6W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L387ZT3N6W');
+    </script>
   </head>
   <body>
     <header class="hero">
       <nav class="top-nav">
         <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
         <div class="nav-links">
-          <a href="weddings.html">Weddings</a>
+          <a href="weddings/">Weddings</a>
           <a href="gear.html">Gear</a>
           <a href="merch.html">Merch</a>
           <a href="mixes.html">Mixes</a>
@@ -38,11 +55,6 @@
 
     <main>
       <section class="section">
-        <div class="page-intro">
-          <p class="eyebrow">Contact</p>
-          <h1>Let’s build the right experience for your event.</h1>
-          <p>Share a few details about your date, venue, and goals and I’ll follow up with availability and next steps.</p>
-        </div>
         <div class="contact-box">
           <div>
             <h3>For clients & promoters</h3>
@@ -54,19 +66,38 @@
               <li>Promotions & nightlife</li>
             </ul>
           </div>
-          <form action="https://formspree.io/f/your-id" method="POST">
-            <input type="text" name="name" placeholder="Your name" required />
-            <input type="email" name="email" placeholder="Email address" required />
-            <input type="text" name="event" placeholder="Event type / date" />
-            <textarea name="message" rows="5" placeholder="Tell me about your event" required></textarea>
+          <form action="https://formspree.io/f/mbgrkvrr" method="POST">
+            <input type="hidden" name="_subject" value="New Seacoast DJ inquiry" />
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" aria-label="Your name" required />
+            <input type="email" name="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required />
+            <input type="text" name="event" placeholder="Event type / date" aria-label="Event type and date" />
+            <textarea name="message" rows="5" placeholder="Tell me about your event" aria-label="Tell me about your event" required></textarea>
             <button class="btn btn-primary" type="submit">Send Inquiry</button>
           </form>
         </div>
       </section>
-    </header>
+
+      <section class="section">
+        <div class="gallery-strip">
+          <figure class="image-card">
+            <img src="images/event-surfers-with-smiles.jpg" alt="Guests smiling and enjoying a Seacoast DJ event" />
+          </figure>
+          <figure class="image-card">
+            <img src="images/tiffany-blago-first-dance.JPG" alt="A first dance moment at a Seacoast DJ wedding" />
+          </figure>
+        </div>
+      </section>
+    </main>
 
     <footer>
       <p>© 2026 Seacoast DJ. Available for events across New England.</p>
     </footer>
+    <script>
+      document.querySelector('form[action*="formspree.io"]')?.addEventListener('submit', () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'contact_form' });
+        }
+      });
+    </script>
   </body>
 </html>

@@ -12,6 +12,27 @@
       name="description"
       content="Seacoast DJ brings 20+ years of experience to weddings, corporate events, and nightlife across New England."
     />
+    <link rel="canonical" href="https://seacoastdj.com/" />
+    <link rel="icon" type="image/png" href="images/SEACOASTDJ-2025-LOGO.png" />
+    <link rel="apple-touch-icon" href="images/SEACOASTDJ-2025-LOGO.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://seacoastdj.com/" />
+    <meta property="og:title" content="Seacoast DJ | Mobile DJ & Event Entertainment" />
+    <meta property="og:description" content="Seacoast DJ brings 20+ years of experience to weddings, corporate events, and nightlife across New England." />
+    <meta property="og:image" content="https://seacoastdj.com/images/hero/wedding/SeacoastDJ_Background_Image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Seacoast DJ",
+        "url": "https://seacoastdj.com/",
+        "logo": "https://seacoastdj.com/images/SEACOASTDJ-2025-LOGO.png",
+        "description": "Mobile DJ, MC, lighting, and event entertainment for weddings, corporate events, and private parties across New England.",
+        "areaServed": "New England",
+        "sameAs": []
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,13 +40,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L387ZT3N6W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L387ZT3N6W');
+    </script>
   </head>
   <body>
     <header class="hero">
       <nav class="top-nav">
         <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
         <div class="nav-links">
-          <a href="weddings.html">Weddings</a>
+          <a href="weddings/">Weddings</a>
           <a href="gear.html">Gear</a>
           <a href="merch.html">Merch</a>
           <a href="mixes.html">Mixes</a>
@@ -33,6 +62,7 @@
           <a href="contact.html">Contact</a>
         </div>
       </nav>
+      <img class="homepage-logo-drop" src="images/SEACOASTDJ-2025-LOGO.png" alt="SeacoastDJ.com" aria-hidden="true" />
 
       <section class="hero-copy">
         <p class="eyebrow">20+ Years of Experience</p>
@@ -104,6 +134,17 @@
           </div>
         </div>
       </section>
+      <section class="content-section" id="mixes">
+          <h2 class="section-headline">THE AUDIO ARCHIVE</h2>
+          <p class="section-subtext">Stream sample promotional live sets powered by the Rane Serato DJ engine for you enjoy and vibe to.</p>
+          <div class="audio-player-container">
+            <div class="mix-card">
+              <h3>Summer Open-Format Mix</h3>
+              <span class="mix-duration">54 Mins</span>
+              <button class="play-audio-btn">LAUNCH TRACK</button>
+            </div>
+          </div>
+        </section>
       <section class="section">
         <div class="section-heading">
           <p class="eyebrow">Entertainment Services</p>
@@ -113,7 +154,7 @@
           <article class="card">
             <h3>Wedding & Event DJ</h3>
             <p>MC hosting, custom playlists, and live mixing for weddings, private parties, and nightlife events.</p>
-            <a href="weddings.html">Explore wedding services</a>
+            <a href="weddings/">Explore wedding services</a>
           </article>
           <article class="card">
             <h3>Photo Booths & Photography</h3>
