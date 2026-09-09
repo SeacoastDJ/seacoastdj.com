@@ -1,4 +1,9 @@
 RewriteEngine On
 
+# Serve the rebuilt index.html over any legacy index.php sitting in the
+# same directory (e.g. weddings/, services/) so old, unrelated PHP files
+# left on the server can't silently shadow the current site.
+DirectoryIndex index.html index.php
+
 # Legacy wedding packages page merged into the main /weddings/ page.
 Redirect 301 /weddings/wedding-packages.html /weddings/
