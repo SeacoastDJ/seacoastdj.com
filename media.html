@@ -33,11 +33,18 @@
       <nav class="top-nav">
         <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
         <div class="nav-links">
-          <a href="weddings/">Weddings</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Events</button>
+            <div class="nav-dropdown-menu">
+              <a href="weddings/">Weddings</a>
+              <a href="corporate/">Corporate</a>
+              <a href="private/">Private</a>
+            </div>
+          </div>
           <a href="gear.html">Gear</a>
           <a href="merch.html">Merch</a>
           <a href="mixes.html">Mixes</a>
-          <a href="media.html">Media</a>
+          <a href="media.html" aria-current="page">Media</a>
           <a href="contact.html">Contact</a>
         </div>
       </nav>
@@ -47,19 +54,14 @@
         <h1>Visual moments that reflect the atmosphere of the night.</h1>
         <p>These galleries and highlights show how music, lighting, and crowd energy work together to create a memorable experience.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="media.html">View the Gallery</a>
+          <a class="btn btn-primary" href="#gallery-grid" data-cta="View the Gallery">View the Gallery</a>
           <a class="btn btn-secondary" href="contact.html">Book a Shoot</a>
         </div>
       </section>
     </header>
 
     <main>
-      <section class="section">
-        <div class="page-intro">
-          <p class="eyebrow">Photos & Video</p>
-          <h1>Visual moments that reflect the atmosphere of the night.</h1>
-          <p>These galleries and highlights show how music, lighting, and crowd energy work together to create a memorable experience.</p>
-        </div>
+      <section class="section" id="gallery-grid">
         <div class="page-grid">
           <article class="page-card">
             <h3>Event Highlights</h3>
@@ -79,9 +81,16 @@
           </article>
         </div>
       </section>
+    </main>
 
-    <footer>
+    <footer class="site-footer">
+      <div class="footer-actions">
+        <a class="footer-btn" href="contact.html">GET IN TOUCH</a>
+        <a class="footer-btn" href="https://www.instagram.com/seacoastdj/" target="_blank" rel="noreferrer">FOLLOW ON IG</a>
+        <a class="footer-btn" href="mailto:?subject=Seacoast%20DJ%20Entertainment&body=Check%20out%20Seacoast%20DJ%20for%20your%20next%20event." target="_blank">TELL A FRIEND</a>
+      </div>
       <p>© 2026 Seacoast DJ. Available for events across New England.</p>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -33,10 +33,17 @@
       <nav class="top-nav">
         <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
         <div class="nav-links">
-          <a href="weddings/">Weddings</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Events</button>
+            <div class="nav-dropdown-menu">
+              <a href="weddings/">Weddings</a>
+              <a href="corporate/">Corporate</a>
+              <a href="private/">Private</a>
+            </div>
+          </div>
           <a href="gear.html">Gear</a>
           <a href="merch.html">Merch</a>
-          <a href="mixes.html">Mixes</a>
+          <a href="mixes.html" aria-current="page">Mixes</a>
           <a href="media.html">Media</a>
           <a href="contact.html">Contact</a>
         </div>
@@ -47,19 +54,14 @@
         <h1>Signature sets for every type of celebration.</h1>
         <p>These examples reflect the way music can move a room from a relaxed start to a full-on dance floor experience.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mixes.html">Preview the Sets</a>
+          <a class="btn btn-primary" href="#mixes-grid" data-cta="Preview the Sets">Preview the Sets</a>
           <a class="btn btn-secondary" href="contact.html">Request a Custom Set</a>
         </div>
       </section>
     </header>
 
     <main>
-      <section class="section">
-        <div class="page-intro">
-          <p class="eyebrow">DJ Mixes</p>
-          <h1>Signature sets for every type of celebration.</h1>
-          <p>These examples reflect the way music can move a room from a relaxed start to a full-on dance floor experience.</p>
-        </div>
+      <section class="section" id="mixes-grid">
         <div class="page-grid">
           <article class="page-card">
             <h3>Wedding Reception Set</h3>
@@ -83,8 +85,15 @@
           </article>
         </div>
       </section>
-    <footer>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-actions">
+        <a class="footer-btn" href="contact.html">GET IN TOUCH</a>
+        <a class="footer-btn" href="https://www.instagram.com/seacoastdj/" target="_blank" rel="noreferrer">FOLLOW ON IG</a>
+        <a class="footer-btn" href="mailto:?subject=Seacoast%20DJ%20Entertainment&body=Check%20out%20Seacoast%20DJ%20for%20your%20next%20event." target="_blank">TELL A FRIEND</a>
+      </div>
       <p>© 2026 Seacoast DJ. Available for events across New England.</p>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

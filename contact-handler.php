@@ -70,4 +70,6 @@ if (!$sent) {
     redirect_to('contact-error.html');
 }
 
-redirect_to('contact-success.html');
+$allowedCategories = ['wedding', 'corporate', 'private', 'general'];
+$category = in_array($eventType, $allowedCategories, true) ? $eventType : 'general';
+redirect_to('/thank-you.html?category=' . rawurlencode($category));

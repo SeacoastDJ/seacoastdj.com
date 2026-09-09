@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Legacy wedding packages page merged into the main /weddings/ page.
+Redirect 301 /weddings/wedding-packages.html /weddings/

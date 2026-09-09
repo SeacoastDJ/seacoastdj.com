@@ -33,12 +33,19 @@
       <nav class="top-nav">
         <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
         <div class="nav-links">
-          <a href="weddings/">Weddings</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Events</button>
+            <div class="nav-dropdown-menu">
+              <a href="weddings/">Weddings</a>
+              <a href="corporate/">Corporate</a>
+              <a href="private/">Private</a>
+            </div>
+          </div>
           <a href="gear.html">Gear</a>
           <a href="merch.html">Merch</a>
           <a href="mixes.html">Mixes</a>
           <a href="media.html">Media</a>
-          <a href="contact.html">Contact</a>
+          <a href="contact.html" aria-current="page">Contact</a>
         </div>
       </nav>
 
@@ -47,8 +54,8 @@
         <h1>Let’s build the right experience for your event.</h1>
         <p>Share a few details about your date, venue, and goals and I’ll follow up with availability and next steps.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:djpyndo@gmail.com">Email Inquiry</a>
-          <a class="btn btn-secondary" href="contact.html">Open Contact Form</a>
+          <a class="btn btn-primary" href="#inquiry-form" data-cta="Open Contact Form">Open Contact Form</a>
+          <a class="btn btn-secondary" href="mailto:djpyndo@gmail.com">Email Instead</a>
         </div>
       </section>
     </header>
@@ -66,14 +73,21 @@
               <li>Promotions & nightlife</li>
             </ul>
           </div>
-          <form action="https://formspree.io/f/mbgrkvrr" method="POST">
-            <input type="hidden" name="_subject" value="New Seacoast DJ inquiry" />
+          <form id="inquiry-form" action="/contact-handler.php" method="POST" data-lead-form="contact_form" data-event-category="general">
             <input type="hidden" name="event_type" value="general" />
+            <input type="hidden" name="form_started" value="" />
+            <input type="text" name="website" style="position:absolute;left:-5000px" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <input type="text" name="name" placeholder="Your name" autocomplete="name" aria-label="Your name" required />
-            <input type="email" name="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required />
-            <input type="text" name="event" placeholder="Event type / date" aria-label="Event type and date" />
+            <div class="input-row">
+              <input type="email" name="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required />
+              <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" />
+            </div>
+            <div class="input-row">
+              <input type="text" name="event_date" placeholder="Event date (if known)" aria-label="Event date" />
+              <input type="text" name="venue" placeholder="Venue / location" aria-label="Venue or location" />
+            </div>
             <textarea name="message" rows="5" placeholder="Tell me about your event" aria-label="Tell me about your event" required></textarea>
-            <button class="btn btn-primary" type="submit">Send Inquiry</button>
+            <button class="btn btn-primary" type="submit" data-cta="Send Inquiry">Send Inquiry</button>
           </form>
         </div>
       </section>
@@ -90,21 +104,14 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
+      <div class="footer-actions">
+        <a class="footer-btn" href="mailto:djpyndo@gmail.com">EMAIL DIRECTLY</a>
+        <a class="footer-btn" href="https://www.instagram.com/seacoastdj/" target="_blank" rel="noreferrer">FOLLOW ON IG</a>
+        <a class="footer-btn" href="mailto:?subject=Seacoast%20DJ%20Entertainment&body=Check%20out%20Seacoast%20DJ%20for%20your%20next%20event." target="_blank">TELL A FRIEND</a>
+      </div>
       <p>© 2026 Seacoast DJ. Available for events across New England.</p>
     </footer>
-    <script>
-      document.querySelector('form[action*="formspree.io"]')?.addEventListener('submit', () => {
-        if (typeof gtag === 'function') {
-          const eventType =
-            document.querySelector('input[name="event_type"]')?.value || 'general';
-
-          gtag('event', 'generate_lead', {
-            event_type: eventType,
-            form_location: 'contact_form'
-          });
-        }
-      });
-</script>
+    <script src="script.js"></script>
   </body>
 </html>

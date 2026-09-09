@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You | Seacoast DJ</title>
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="Your inquiry has been sent to Seacoast DJ." />
+    <link rel="canonical" href="https://seacoastdj.com/thank-you.html" />
+    <link rel="icon" type="image/png" href="images/SEACOASTDJ-2025-LOGO.png" />
+    <link rel="apple-touch-icon" href="images/SEACOASTDJ-2025-LOGO.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L387ZT3N6W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L387ZT3N6W');
+    </script>
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="top-nav">
+        <a class="brand" href="/"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
+        <div class="nav-links">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Events</button>
+            <div class="nav-dropdown-menu">
+              <a href="/weddings/">Weddings</a>
+              <a href="/corporate/">Corporate</a>
+              <a href="/private/">Private</a>
+            </div>
+          </div>
+          <a href="/gear.html">Gear</a>
+          <a href="/merch.html">Merch</a>
+          <a href="/mixes.html">Mixes</a>
+          <a href="/media.html">Media</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </nav>
+
+      <section class="hero-copy" style="text-align:center">
+        <p class="eyebrow" style="justify-content:center">Inquiry received</p>
+        <h1 id="thank-you-heading">Thanks — your message is in.</h1>
+        <p id="thank-you-copy">I'll follow up with availability and next steps as soon as I can, usually within a day or two.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-primary" href="/">Return home</a>
+          <a class="btn btn-secondary" href="/contact.html">Send another inquiry</a>
+        </div>
+      </section>
+    </header>
+
+    <footer>
+      <p>© 2026 Seacoast DJ. Available for events across New England.</p>
+    </footer>
+
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('category') || 'general';
+        const copy = {
+          wedding: {
+            h: 'Thanks — your wedding inquiry is in.',
+            p: "I'll follow up with availability for your date and next steps as soon as I can, usually within a day or two."
+          },
+          corporate: {
+            h: 'Thanks — your event details are in.',
+            p: "I'll follow up quickly with availability and a straightforward quote so you have what you need for your planning timeline."
+          },
+          private: {
+            h: 'Thanks — your inquiry is in.',
+            p: "I'll follow up with availability and package options for your celebration as soon as I can."
+          }
+        };
+        const match = copy[category];
+        if (match) {
+          document.getElementById('thank-you-heading').textContent = match.h;
+          document.getElementById('thank-you-copy').textContent = match.p;
+        }
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { event_category: category });
+        }
+      })();
+    </script>
+  </body>
+</html>
