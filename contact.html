@@ -47,7 +47,7 @@
         <h1>Let’s build the right experience for your event.</h1>
         <p>Share a few details about your date, venue, and goals and I’ll follow up with availability and next steps.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:you@example.com">Email Inquiry</a>
+          <a class="btn btn-primary" href="mailto:djpyndo@gmail.com">Email Inquiry</a>
           <a class="btn btn-secondary" href="contact.html">Open Contact Form</a>
         </div>
       </section>
@@ -68,6 +68,7 @@
           </div>
           <form action="https://formspree.io/f/mbgrkvrr" method="POST">
             <input type="hidden" name="_subject" value="New Seacoast DJ inquiry" />
+            <input type="hidden" name="event_type" value="general" />
             <input type="text" name="name" placeholder="Your name" autocomplete="name" aria-label="Your name" required />
             <input type="email" name="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required />
             <input type="text" name="event" placeholder="Event type / date" aria-label="Event type and date" />
@@ -95,9 +96,15 @@
     <script>
       document.querySelector('form[action*="formspree.io"]')?.addEventListener('submit', () => {
         if (typeof gtag === 'function') {
-          gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'contact_form' });
+          const eventType =
+            document.querySelector('input[name="event_type"]')?.value || 'general';
+
+          gtag('event', 'generate_lead', {
+            event_type: eventType,
+            form_location: 'contact_form'
+          });
         }
       });
-    </script>
+</script>
   </body>
 </html>
