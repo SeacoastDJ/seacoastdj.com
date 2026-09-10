@@ -7,3 +7,39 @@ DirectoryIndex index.html index.php
 
 # Legacy wedding packages page merged into the main /weddings/ page.
 Redirect 301 /weddings/wedding-packages.html /weddings/
+
+# Legacy pages from the pre-redesign site, redirected to their closest
+# current equivalent so old backlinks/bookmarks/search results don't 404.
+Redirect 301 /weddings/index.php /weddings/
+Redirect 301 /services/index.php /services/
+
+Redirect 301 /about.html /
+Redirect 301 /homepage.html /
+Redirect 301 /promo-site.html /
+Redirect 301 /default.php /
+Redirect 301 /sandbox2020.html /
+Redirect 301 /reviews.php /
+Redirect 301 /section-reviews.html /
+Redirect 301 /wedding-packages.html /weddings/
+Redirect 301 /weddings.html /weddings/
+Redirect 301 /partners-venues.html /weddings/
+Redirect 301 /event-services.html /services/
+Redirect 301 /gallery.html /media.html
+Redirect 301 /photography.html /media.html
+Redirect 301 /contact-us.html /contact.html
+Redirect 301 /check-availability.html /contact.html
+Redirect 301 /date-available.html /contact.html
+Redirect 301 /reserve-soon.html /contact.html
+Redirect 301 /thanks.html /thank-you.html
+
+Redirect 301 /weddings/event-planning.php /weddings/
+Redirect 301 /weddings/faqs.php /weddings/
+Redirect 301 /weddings/wedding-packages.php /weddings/
+Redirect 301 /weddings/wedding-pricing.php /weddings/
+Redirect 301 "/weddings/wedding-pricing - Copy.php" /weddings/
+Redirect 301 /weddings/wedding-pricing-comparison.php /weddings/
+Redirect 301 /weddings/recommended-venues.php /weddings/
+Redirect 301 /weddings/friends-affiliates.php /weddings/
+Redirect 301 /weddings/gigbuilder-wedding-outline.html /weddings/
+Redirect 301 /weddings/equipment.php /gear.html
+Redirect 301 /weddings/email-anniversary.html /private/
