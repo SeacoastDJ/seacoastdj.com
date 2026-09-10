@@ -1,7 +1,15 @@
 <?php
 declare(strict_types=1);
 
+require __DIR__ . '/lib/PHPMailer/Exception.php';
+require __DIR__ . '/lib/PHPMailer/PHPMailer.php';
+require __DIR__ . '/lib/PHPMailer/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
+
 $config = require __DIR__ . '/contact-config.php';
+$smtp   = require __DIR__ . '/smtp-config.php';
 
 function redirect_to(string $page): never {
     header('Location: ' . $page, true, 303);
@@ -50,23 +58,35 @@ $body = "New website inquiry\n\n"
       . "Message:\n{$message}\n\n"
       . "Submitted from: " . ($_SERVER['HTTP_HOST'] ?? 'seacoastdj.com') . "\n";
 
-$headers = [
-    'From: ' . $config['from_name'] . ' <' . $config['from_email'] . '>',
-    'Reply-To: ' . $name . ' <' . $email . '>',
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'X-Mailer: PHP/' . PHP_VERSION,
-];
+$sent = false;
+try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host       = $smtp['host'];
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $smtp['username'];
+    $mail->Password   = $smtp['password'];
+    $mail->SMTPSecure = $smtp['secure'] === 'tls' ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port       = $smtp['port'];
+    $mail->CharSet    = 'UTF-8';
 
-$sent = @mail(
-    $config['recipient_email'],
-    $subject,
-    $body,
-    implode("\r\n", $headers)
-);
+    $mail->setFrom($config['from_email'], $config['from_name']);
+    $mail->addAddress($config['recipient_email'], $config['recipient_name']);
+    $mail->addReplyTo($email, $name);
+
+    $mail->isHTML(false);
+    $mail->Subject = $subject;
+    $mail->Body    = $body;
+
+    $mail->send();
+    $sent = true;
+} catch (PHPMailerException $e) {
+    error_log('SeacoastDJ contact form: PHPMailer error - ' . $e->getMessage());
+} catch (\Throwable $e) {
+    error_log('SeacoastDJ contact form: unexpected error - ' . $e->getMessage());
+}
 
 if (!$sent) {
-    error_log('SeacoastDJ contact form: mail() returned false.');
     redirect_to('contact-error.html');
 }
 

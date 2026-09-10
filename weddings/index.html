@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles.css?v=2" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L387ZT3N6W"></script>
   <script>
@@ -42,6 +42,7 @@
             <a href="/weddings/" aria-current="page">Weddings</a>
             <a href="/corporate/">Corporate</a>
             <a href="/private/">Private</a>
+            <button type="button" data-modal-target="gigbuilder-modal" data-cta="Check Availability (Nav)">Check Availability</button>
           </div>
         </div>
         <a href="/gear.html">Gear</a>
@@ -61,6 +62,7 @@
         <a class="btn btn-primary" href="#inquiry-form" data-cta="Send Inquiry (Wedding Hero)">Send Inquiry</a>
         <a class="btn btn-secondary" href="#" data-modal-target="gigbuilder-modal" data-cta="Check Availability (Wedding Hero)">Check Availability</a>
       </div>
+      <p class="form-note" style="margin-top:1rem"><a href="#faq">Got questions? See the FAQ →</a></p>
     </section>
   </header>
 
@@ -157,6 +159,10 @@
         </article>
       </div>
       <p class="form-note" style="margin-top:1.5rem">Add-ons available on any package: ceremony audio ($500), cocktail hour audio ($250), custom song edit ($195), extra uplighting ($550), dance floor lighting ($350), additional speakers ($150 each), and overtime ($200 per half hour). Travel outside Hampton, NH billed at $50/hr each way.</p>
+      <div class="hero-actions" style="margin-top:2rem">
+        <a class="btn btn-primary" href="#inquiry-form" data-cta="Get Your Quote (After Packages)">Get Your Quote</a>
+        <a class="btn btn-secondary" href="#" data-modal-target="gigbuilder-modal" data-cta="Check Availability (After Packages)">Check Availability</a>
+      </div>
     </section>
 
     <section class="section" id="gallery">
@@ -175,6 +181,9 @@
         <div class="grid-item"><img src="/images/wedding-pics/IMG_3644.JPG" alt="Wedding photography moment"></div>
         <div class="grid-item"><img src="/images/2017-seacoastdj-banner.jpg" alt="Seacoast DJ wedding banner"></div>
         <div class="grid-item"><img src="/images/from-djpyndo/reception-uplighting.png" alt="Elegant reception room with pink uplighting"></div>
+      </div>
+      <div class="hero-actions" style="margin-top:2rem;justify-content:center">
+        <a class="btn btn-secondary" href="#inquiry-form" data-cta="Send Inquiry (After Gallery)">Like what you see? Send an inquiry</a>
       </div>
     </section>
 
@@ -202,6 +211,9 @@
         </a>
         <img src="/images/wed-img/awards/bow_2020_badges(120x120).png" alt="Best of The Knot Weddings award" />
       </div>
+      <div class="hero-actions" style="margin-top:2rem">
+        <a class="btn btn-primary" href="#inquiry-form" data-cta="Check Your Date (After Reviews)">Check Your Date</a>
+      </div>
     </section>
 
     <section class="section">
@@ -212,7 +224,7 @@
       <p>Based in Hampton, NH, serving weddings within 75 miles — covering the NH and MA Seacoast, Southern Maine, and Greater Boston. Beyond 75 miles, just ask: travel and accommodation arrangements can often be worked out.</p>
     </section>
 
-    <section class="section">
+    <section class="section" id="faq">
       <div class="section-heading">
         <p class="eyebrow">Frequently asked</p>
         <h2>Answers before you have to ask.</h2>
@@ -247,12 +259,12 @@
           <p>Check your date, submit a quote request, and we'll set up a short call or meeting to talk through your vision. A signed contract and a reservation deposit of 25% of your total event price — applied toward your final balance — secures your date.</p>
         </article>
         <article class="page-card">
-          <h3>Do you bring backup equipment?</h3>
-          <p>Yes — I bring a backup audio source to every event, so a single piece of gear failing doesn't put your reception at risk.</p>
-        </article>
-        <article class="page-card">
           <h3>What if we need to cancel or change our date?</h3>
           <p>Reservation deposits are non-refundable, since they hold your date and kick off the planning process right away. If your plans change, reach out as soon as possible — rescheduling to a new date is often possible if we're available. Full cancellation and rescheduling terms are spelled out in your booking contract.</p>
+        </article>
+        <article class="page-card">
+          <h3>Do you bring backup equipment?</h3>
+          <p>Yes — I bring a backup audio source to every event, so a single piece of gear failing doesn't put your reception at risk.</p>
         </article>
       </div>
     </section>
@@ -334,6 +346,6 @@
     <p>© 2026 Seacoast DJ. Available for events across New England.</p>
   </footer>
 
-  <script src="../script.js"></script>
+  <script src="../script.js?v=2"></script>
 </body>
 </html>
