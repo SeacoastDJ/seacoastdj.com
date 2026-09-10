@@ -63,6 +63,7 @@
               <a href="weddings/">Weddings</a>
               <a href="corporate/">Corporate</a>
               <a href="private/">Private</a>
+              <button type="button" data-modal-target="gigbuilder-modal" data-cta="Check Availability (Nav)">Check Availability</button>
             </div>
           </div>
           <a href="gear.html">Gear</a>
@@ -222,6 +223,48 @@
         </div>
       </section>
     </main>
+  <div class="modal-overlay" id="gigbuilder-modal" role="dialog" aria-modal="true" aria-labelledby="gigbuilder-modal-title">
+    <div class="modal-window">
+      <button class="close-modal-btn" type="button" data-modal-close aria-label="Close">&times;</button>
+      <p class="eyebrow">Instant availability</p>
+      <h3 id="gigbuilder-modal-title">Check your event date</h3>
+      <p class="form-note">Powered by GigBuilder — pick a date and find out instantly if I'm available.</p>
+      <form action="https://www.gigbuilder.com/cal/nh/djpyndo.nsf/checkdates" method="post" name="checkdate">
+        <div class="date-select-row">
+          <select name="Month" aria-label="Month">
+            <option value="0" selected>Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <select name="Day" aria-label="Day">
+            <option selected>Day</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+            <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+            <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+            <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+            <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+            <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+            <option>31</option>
+          </select>
+          <select name="Year" aria-label="Year" class="js-year-select">
+            <option selected>Year</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" data-cta="Check Availability (GigBuilder Submit)">Check Availability</button>
+      </form>
+    </div>
+  </div>
+
     <footer class="site-footer">
       <div class="footer-actions">
         <a class="footer-btn" href="contact.html" data-cta="Get In Touch (Footer)">GET IN TOUCH</a>
