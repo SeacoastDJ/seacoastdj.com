@@ -288,7 +288,6 @@
       <p class="eyebrow">Instant availability</p>
       <h3 id="gigbuilder-modal-title">Check your event date</h3>
       <p class="form-note">Powered by GigBuilder — pick a date and find out instantly if I'm available.</p>
-      <script language="JavaScript" src="https://www.wedj.com/toolbar/year.js"></script>
       <form action="https://www.gigbuilder.com/cal/nh/djpyndo.nsf/checkdates" method="post" name="checkdate">
         <div class="date-select-row">
           <select name="Month" aria-label="Month">
@@ -316,13 +315,8 @@
             <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
             <option>31</option>
           </select>
-          <select name="Year" aria-label="Year">
+          <select name="Year" aria-label="Year" class="js-year-select">
             <option selected>Year</option>
-            <option><script>document.write(typeof theyear !== 'undefined' ? theyear : '');</script></option>
-            <option><script>document.write(typeof theyear2 !== 'undefined' ? theyear2 : '');</script></option>
-            <option><script>document.write(typeof theyear3 !== 'undefined' ? theyear3 : '');</script></option>
-            <option><script>document.write(typeof theyear4 !== 'undefined' ? theyear4 : '');</script></option>
-            <option><script>document.write(typeof theyear5 !== 'undefined' ? theyear5 : '');</script></option>
           </select>
         </div>
         <button class="btn btn-primary" type="submit" data-cta="Check Availability (GigBuilder Submit)">Check Availability</button>

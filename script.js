@@ -43,6 +43,20 @@ document.addEventListener('click', (event) => {
   });
 });
 
+// Populate the GigBuilder date-check "Year" dropdown ourselves. The original
+// embed relied on <script>document.write(...)</script> nested inside <option>
+// tags, which modern browsers strip/relocate (an <option> can only contain
+// text), so every year came through blank regardless of whether the
+// third-party year.js script loaded.
+document.querySelectorAll('select.js-year-select').forEach((select) => {
+  const currentYear = new Date().getFullYear();
+  for (let i = 0; i < 5; i++) {
+    const option = document.createElement('option');
+    option.textContent = String(currentYear + i);
+    select.appendChild(option);
+  }
+});
+
 // Pad-press flash: briefly re-triggers the CSS animation on click, like a lit
 // pad flashing when it's hit on the controller.
 document.querySelectorAll('.btn, .footer-btn').forEach((el) => {
