@@ -1,5 +1,17 @@
 RewriteEngine On
 
+# Canonicalize host: www.seacoastdj.com was serving the full site with no
+# redirect to seacoastdj.com, so Google was crawling/indexing both as
+# duplicates (Search Console Coverage report, 2026-09-16).
+RewriteCond %{HTTP_HOST} ^www\.seacoastdj\.com$ [NC]
+RewriteRule ^(.*)$ https://seacoastdj.com/$1 [L,R=301]
+
+# Every /index.html was also directly reachable alongside its clean
+# directory URL (e.g. /weddings/index.html and /weddings/ both served
+# 200), another duplicate-URL source flagged by the same report.
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
+
 # Serve the rebuilt index.html over any legacy index.php sitting in the
 # same directory (e.g. weddings/, services/) so old, unrelated PHP files
 # left on the server can't silently shadow the current site.
