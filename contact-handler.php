@@ -90,6 +90,6 @@ if (!$sent) {
     redirect_to('contact-error.html');
 }
 
-$allowedCategories = ['wedding', 'corporate', 'private', 'general'];
+$allowedCategories = ['Wedding', 'Corporate', 'Private', 'general'];
 $category = in_array($eventType, $allowedCategories, true) ? $eventType : 'general';
 redirect_to('/thank-you.html?category=' . rawurlencode($category));
