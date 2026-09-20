@@ -86,6 +86,30 @@ document.querySelectorAll('.btn, .footer-btn').forEach((el) => {
     });
   });
 
+  // Availability checker funnel: opens (any trigger) and submits, so click-through can
+  // be measured per placement. cta_location comes from the "(Placement)" in data-cta.
+  const availabilityVertical = document.body.dataset.eventCategory || 'general';
+  let lastOpenLocation = 'unknown';
+  document.querySelectorAll('[data-modal-target="gigbuilder-modal"]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const placement = (el.dataset.cta || '').match(/\(([^)]+)\)/);
+      lastOpenLocation = placement ? placement[1] : 'unknown';
+      window.gtag('event', 'check_availability_open', {
+        cta_location: lastOpenLocation,
+        event_category: availabilityVertical
+      });
+    });
+  });
+  document.querySelectorAll('form[name="checkdate"]').forEach((form) => {
+    form.addEventListener('submit', () => {
+      window.gtag('event', 'check_availability_submit', {
+        cta_location: lastOpenLocation,
+        event_category: availabilityVertical,
+        transport_type: 'beacon'
+      });
+    });
+  });
+
   document.querySelectorAll('form[data-lead-form]').forEach((form) => {
     let started = false;
     form.addEventListener('focusin', () => {
