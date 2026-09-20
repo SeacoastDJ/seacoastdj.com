@@ -31,7 +31,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
     <script src="https://www.gigbuilder.com/cal/nh/djpyndo.nsf/webtools.js?open" defer></script>
 </head>
-<body class="site-shell">
+<body class="site-shell" data-event-category="Rental">
   <header class="hero">
     <nav class="top-nav">
       <a class="brand" href="index.html"><img src="images/SEACOASTDJ-2025-LOGO.png" alt="Seacoast DJ logo" class="nav-logo">Seacoast DJ</a>
@@ -130,6 +130,30 @@
         <a class="btn btn-primary" href="contact.html" data-cta="Get a Quote (Gear Equipment)">Get a Quote</a>
         <a class="btn btn-secondary" href="#" data-modal-target="gigbuilder-modal" data-cta="Check Availability (Gear Equipment)">Check Availability</a>
       </div>
+    </section>
+
+    <section class="section contact-box" id="inquiry-form-section">
+      <div>
+        <p class="eyebrow">Questions about gear?</p>
+        <h2 style="max-width:18ch">Tell me what you need.</h2>
+        <p>Ask about sound, lighting, or equipment for your event and I'll follow up quickly with answers and next steps.</p>
+      </div>
+      <form id="inquiry-form" action="/contact-handler.php" method="POST" data-lead-form="rental_inquiry_form" data-event-category="Rental">
+        <input type="hidden" name="event_type" value="Rental" />
+        <input type="hidden" name="form_started" value="" />
+        <input type="text" name="website" style="position:absolute;left:-5000px" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" aria-label="Your name" required />
+        <div class="input-row">
+          <input type="email" name="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required />
+          <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" aria-label="Phone number" />
+        </div>
+        <div class="input-row">
+          <input type="text" name="event_date" placeholder="Event date" aria-label="Event date" />
+          <input type="text" name="venue" placeholder="Venue / location" aria-label="Venue or location" />
+        </div>
+        <textarea name="message" rows="4" placeholder="What gear or equipment are you asking about?" aria-label="What gear or equipment are you asking about?" required></textarea>
+        <button class="btn btn-primary" type="submit" data-cta="Send Inquiry (Gear Form)">Send Inquiry</button>
+      </form>
     </section>
   </main>
 
