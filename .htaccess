@@ -44,7 +44,6 @@ Redirect 301 /date-available.html /contact.html
 Redirect 301 /reserve-soon.html /contact.html
 Redirect 301 /thanks.html /thank-you.html
 
-Redirect 301 /weddings/event-planning.php /weddings/
 Redirect 301 /weddings/faqs.php /weddings/
 Redirect 301 /weddings/wedding-packages.php /weddings/
 Redirect 301 /weddings/wedding-pricing.php /weddings/
