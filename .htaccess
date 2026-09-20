@@ -6,6 +6,14 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.seacoastdj\.com$ [NC]
 RewriteRule ^(.*)$ https://seacoastdj.com/$1 [L,R=301]
 
+# Retired for good, answered with 410 Gone (not a bare 404) so Google drops
+# them faster:
+#  - /rentals/*: equipment is bundled into GigBuilder packages now.
+#  - /website-intelligence/: a separate business, removed from this site.
+# Must sit above the /index.html rule so /rentals/index.html gets a 410
+# directly instead of a 301 hop first.
+RewriteRule ^(rentals|website-intelligence)(/.*)?$ - [NC,G,L]
+
 # Every /index.html was also directly reachable alongside its clean
 # directory URL (e.g. /weddings/index.html and /weddings/ both served
 # 200), another duplicate-URL source flagged by the same report.
@@ -16,6 +24,10 @@ RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
 # same directory (e.g. weddings/, services/) so old, unrelated PHP files
 # left on the server can't silently shadow the current site.
 DirectoryIndex index.html index.php
+
+# Equipment rentals page merged into /gear.html (equipment now ships inside
+# every package, so there is no standalone rentals page).
+Redirect 301 /services/rentals.html /gear.html
 
 # Legacy wedding packages page merged into the main /weddings/ page.
 Redirect 301 /weddings/wedding-packages.html /weddings/
