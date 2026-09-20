@@ -1,68 +1,70 @@
 RewriteEngine On
 
-# Canonicalize host: www.seacoastdj.com was serving the full site with no
-# redirect to seacoastdj.com, so Google was crawling/indexing both as
-# duplicates (Search Console Coverage report, 2026-09-16).
-RewriteCond %{HTTP_HOST} ^www\.seacoastdj\.com$ [NC]
-RewriteRule ^(.*)$ https://seacoastdj.com/$1 [L,R=301]
+# Rule order matters, and everything redirecting lives in mod_rewrite (not
+# mod_alias Redirect) on purpose: Apache and LiteSpeed order those two
+# mechanisms differently, which left www legacy URLs bouncing twice. Every
+# redirect below goes to the final canonical address (https://seacoastdj.com/...)
+# in ONE hop and sits above the www rule, so www and non-www both get one hop.
 
 # Retired for good, answered with 410 Gone (not a bare 404) so Google drops
-# them faster:
+# them faster, on any host:
 #  - /rentals/*: equipment is bundled into GigBuilder packages now.
 #  - /website-intelligence/: a separate business, removed from this site.
-# Must sit above the /index.html rule so /rentals/index.html gets a 410
-# directly instead of a 301 hop first.
 RewriteRule ^(rentals|website-intelligence)(/.*)?$ - [NC,G,L]
 
 # Every /index.html was also directly reachable alongside its clean
-# directory URL (e.g. /weddings/index.html and /weddings/ both served
-# 200), another duplicate-URL source flagged by the same report.
+# directory URL (e.g. /weddings/index.html and /weddings/ both served 200).
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
-RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
+RewriteRule ^(.*/)?index\.html$ https://seacoastdj.com/$1 [L,R=301]
+
+# Section URLs without the trailing slash: add it and fix the host together.
+RewriteRule ^(weddings|corporate|private|services)$ https://seacoastdj.com/$1/ [L,R=301]
+
+# Equipment rentals page merged into /gear.html (equipment now ships inside every package, so there is no standalone rentals page); legacy wedding packages page merged into /weddings/.
+RewriteRule ^services/rentals\.html$ https://seacoastdj.com/gear.html [R=301,L]
+RewriteRule ^weddings/wedding-packages\.html$ https://seacoastdj.com/weddings/ [R=301,L]
+
+# Old index.php files that used to shadow the current pages.
+RewriteRule ^weddings/index\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^services/index\.php$ https://seacoastdj.com/services/ [R=301,L]
+
+# Legacy pages from the pre-redesign site, redirected to their closest current equivalent so old backlinks/bookmarks/search results don't 404.
+RewriteRule ^about\.html$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^homepage\.html$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^promo-site\.html$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^default\.php$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^sandbox2020\.html$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^reviews\.php$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^section-reviews\.html$ https://seacoastdj.com/ [R=301,L]
+RewriteRule ^wedding-packages\.html$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings\.html$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^partners-venues\.html$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^event-services\.html$ https://seacoastdj.com/services/ [R=301,L]
+RewriteRule ^gallery\.html$ https://seacoastdj.com/media.html [R=301,L]
+RewriteRule ^photography\.html$ https://seacoastdj.com/media.html [R=301,L]
+RewriteRule ^contact-us\.html$ https://seacoastdj.com/contact.html [R=301,L]
+RewriteRule ^check-availability\.html$ https://seacoastdj.com/contact.html [R=301,L]
+RewriteRule ^date-available\.html$ https://seacoastdj.com/contact.html [R=301,L]
+RewriteRule ^reserve-soon\.html$ https://seacoastdj.com/contact.html [R=301,L]
+RewriteRule ^thanks\.html$ https://seacoastdj.com/thank-you.html [R=301,L]
+RewriteRule ^weddings/faqs\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/wedding-packages\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/wedding-pricing\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/wedding-pricing\ -\ Copy\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/wedding-pricing-comparison\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/recommended-venues\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/friends-affiliates\.php$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/gigbuilder-wedding-outline\.html$ https://seacoastdj.com/weddings/ [R=301,L]
+RewriteRule ^weddings/equipment\.php$ https://seacoastdj.com/gear.html [R=301,L]
+RewriteRule ^weddings/email-anniversary\.html$ https://seacoastdj.com/private/ [R=301,L]
+
+# Canonicalize host: www.seacoastdj.com served the full site with no redirect
+# to seacoastdj.com, so Google crawled and indexed both as duplicates. Must
+# stay BELOW the redirects above so they take precedence.
+RewriteCond %{HTTP_HOST} ^www\.seacoastdj\.com$ [NC]
+RewriteRule ^(.*)$ https://seacoastdj.com/$1 [L,R=301]
 
 # Serve the rebuilt index.html over any legacy index.php sitting in the
 # same directory (e.g. weddings/, services/) so old, unrelated PHP files
 # left on the server can't silently shadow the current site.
 DirectoryIndex index.html index.php
-
-# Equipment rentals page merged into /gear.html (equipment now ships inside
-# every package, so there is no standalone rentals page).
-Redirect 301 /services/rentals.html /gear.html
-
-# Legacy wedding packages page merged into the main /weddings/ page.
-Redirect 301 /weddings/wedding-packages.html /weddings/
-
-# Legacy pages from the pre-redesign site, redirected to their closest
-# current equivalent so old backlinks/bookmarks/search results don't 404.
-Redirect 301 /weddings/index.php /weddings/
-Redirect 301 /services/index.php /services/
-
-Redirect 301 /about.html /
-Redirect 301 /homepage.html /
-Redirect 301 /promo-site.html /
-Redirect 301 /default.php /
-Redirect 301 /sandbox2020.html /
-Redirect 301 /reviews.php /
-Redirect 301 /section-reviews.html /
-Redirect 301 /wedding-packages.html /weddings/
-Redirect 301 /weddings.html /weddings/
-Redirect 301 /partners-venues.html /weddings/
-Redirect 301 /event-services.html /services/
-Redirect 301 /gallery.html /media.html
-Redirect 301 /photography.html /media.html
-Redirect 301 /contact-us.html /contact.html
-Redirect 301 /check-availability.html /contact.html
-Redirect 301 /date-available.html /contact.html
-Redirect 301 /reserve-soon.html /contact.html
-Redirect 301 /thanks.html /thank-you.html
-
-Redirect 301 /weddings/faqs.php /weddings/
-Redirect 301 /weddings/wedding-packages.php /weddings/
-Redirect 301 /weddings/wedding-pricing.php /weddings/
-Redirect 301 "/weddings/wedding-pricing - Copy.php" /weddings/
-Redirect 301 /weddings/wedding-pricing-comparison.php /weddings/
-Redirect 301 /weddings/recommended-venues.php /weddings/
-Redirect 301 /weddings/friends-affiliates.php /weddings/
-Redirect 301 /weddings/gigbuilder-wedding-outline.html /weddings/
-Redirect 301 /weddings/equipment.php /gear.html
-Redirect 301 /weddings/email-anniversary.html /private/
