@@ -1,3 +1,7 @@
 .DS_Store
 .vscode/sftp.json
 smtp-config.php
+# Local-only notes and Claude files, never deployed
+CLAUDE.md
+README.md
+.claude/
