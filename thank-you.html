@@ -89,8 +89,22 @@
           document.getElementById('thank-you-copy').textContent = match.p;
         }
 
-        if (typeof gtag === 'function') {
-          gtag('event', 'generate_lead', { event_category: category });
+        // contact-handler.php only redirects here after the email sent. form_location
+        // mirrors the data-lead-form value that form_start sends, so both events tie together.
+        const formLocation = {
+          Wedding: 'wedding_inquiry_form',
+          Corporate: 'corporate_inquiry_form',
+          Private: 'private_inquiry_form',
+          Rental: 'rental_inquiry_form',
+          general: 'contact_form'
+        };
+        const navEntry = performance.getEntriesByType('navigation')[0];
+        const isReload = navEntry && navEntry.type === 'reload';
+        if (typeof gtag === 'function' && params.has('category') && formLocation[category] && !isReload) {
+          gtag('event', 'generate_lead', {
+            form_location: formLocation[category],
+            event_category: category
+          });
         }
       })();
     </script>
