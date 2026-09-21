@@ -18,7 +18,7 @@ Marketing and lead-gen site for Seacoast DJ, a mobile DJ business serving the NH
 - `.htaccess`: every redirect is an ordered `RewriteRule` with an absolute `https://seacoastdj.com/...` target so each legacy URL resolves in one hop. Do not add plain `Redirect` lines (LiteSpeed and local Apache order them differently). `/rentals/*` and `/website-intelligence/` return 410 Gone on purpose. www to non-www is last. http to https is handled by the Hostinger edge.
 - `contact-handler.php` outcomes: honeypot -> `contact-success.html` (no analytics event); timing (<3s or >24h), validation, or SMTP failure -> `contact-error.html`; success -> 303 to `/thank-you.html?category=<Wedding|Corporate|Private|Rental|general>` (strict, case-sensitive whitelist).
 - `smtp-config.php` holds SMTP credentials, is gitignored, and must stay out of the repo. Config files return an empty body when requested over HTTP, which is fine.
-- `styles-oldvsai.css`, `wedding.css`, `audit.md`, `lighthouse-report.md` are stale leftovers.
+- `styles-oldvsai.css` and `wedding.css` are unused leftovers.
 
 ## SEO decisions
 
@@ -27,6 +27,19 @@ Marketing and lead-gen site for Seacoast DJ, a mobile DJ business serving the NH
 - Copy voice: short, benefit-forward, second person.
 - Keep `sitemap.xml` in sync (11 URLs). Rentals are not listed.
 - Open items: Google Business Profile in progress (add its URL to schema `sameAs` once verified); update The Knot / WeddingWire links to `/weddings/`.
+
+## Brand and copy
+
+- Public brand name everywhere (site, socials, GBP, GigBuilder): **Seacoast DJ**. "Seacoast DJ & Marketing Services, LLC" (est. 2016) appears only where a legal entity name is required (contracts, invoices, insurance certs). "DJ Bill Pyndo" is the "led by" credibility line, not a competing brand.
+- History, stated consistently: turntables since 1999, professional since 2004 ("20+ years" is the credibility stat), LLC established 2016. Claims in use: 500+ events, 200+ weddings, licensed and insured (COI available), live mixing (not a playlist), strongest with 20-to-40-year-old crowds.
+- Service radius: **75 miles from Hampton, NH**, with travel/accommodation arrangements beyond that. Any listing or page showing 40 or 5-150 miles is stale.
+- One primary CTA per page: Check Availability. Get a Fast Quote is secondary.
+- Do not mix the "Website Intelligence Studio" product into this site (removed, `/website-intelligence/` is 410).
+- djpyndo.com is an old inactive site and should 301 to seacoastdj.com at the registrar.
+- Directory listings (Knot, WeddingWire, Eventective, WeDJ, GigBuilder bio) should share one bio. WeDJ has no reviews, so ask past clients for some. The GigBuilder bio must use "and" or a plain "&", never `&amp;`.
+- Wedding package pricing and FAQ copy live on `/weddings/`. The full bios, About copy and package text from the old brand package are in git history (`git show 6cfa2da:seacoastdj-brand-copy-package.md`).
+- Design note: buttons use a Rane One MKII-inspired cyan/blue treatment with tactile shadows. Do not restyle.
+- Not yet done: run Lighthouse / PageSpeed (an earlier `npx lighthouse` attempt failed), and check Core Web Vitals in Search Console.
 
 ## Analytics (GA4, gtag.js only, ID `G-L387ZT3N6W`, no GTM)
 
