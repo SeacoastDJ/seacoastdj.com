@@ -3,6 +3,11 @@ RewriteEngine On
 # Backstop: never serve markdown or Claude files, even if one is uploaded by mistake.
 RewriteRule ^(.*/)?(\.claude(/.*)?|[^/]*\.md)$ - [NC,F,L]
 
+# social-studio/ is a separate Node.js app served on its own subdomain
+# (social.seacoastdj.com), not by this static vhost. Block it here too in
+# case its source ever syncs into this document root via git auto-deploy.
+RewriteRule ^social-studio(/.*)?$ - [NC,F,L]
+
 # Rule order matters, and everything redirecting lives in mod_rewrite (not
 # mod_alias Redirect) on purpose: Apache and LiteSpeed order those two
 # mechanisms differently, which left www legacy URLs bouncing twice. Every

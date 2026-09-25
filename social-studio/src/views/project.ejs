@@ -1,0 +1,68 @@
+<%- include('partials/head') %><%- include('partials/nav') %>
+<main class="container">
+  <a href="/" class="back">← Dashboard</a>
+  <section class="project-heading">
+    <div><span class="status <%= project.status %>"><%= project.status %></span><h1><%= project.title %></h1><p><%= [project.town, project.vertical, project.stage].filter(Boolean).join(' · ') %></p></div>
+    <form method="post" action="/projects/<%= project.id %>/generate"><button class="primary"><%= project.drafts.length ? 'Regenerate drafts' : 'Generate draft set' %></button></form>
+  </section>
+  <section>
+    <p class="eyebrow">MEDIA</p>
+    <form method="post" action="/projects/<%= project.id %>/analyze">
+      <div class="media-grid">
+        <% if (!project.files.length) { %><div class="empty"><p>No media was uploaded for this project.</p></div><% } %>
+        <% project.files.forEach(file => { %><figure><% if (file.mimeType.startsWith('image/')) { %><img src="/media/<%= project.id %>/<%= file.id %>" alt="Uploaded project media"><label class="media-select"><input type="checkbox" name="mediaIds" value="<%= file.id %>" checked> Analyze</label><% } else { %><video controls preload="metadata" src="/media/<%= project.id %>/<%= file.id %>"></video><span class="media-select muted">Video analysis coming later</span><% } %><figcaption><%= file.originalName %></figcaption></figure><% }) %>
+      </div>
+      <% const hasImage = project.files.some(f => f.mimeType.startsWith('image/')); %>
+      <% if (openAIVisionConfigured || claudeVisionConfigured) { %>
+        <div class="analysis-action">
+          <div><b>Select up to five photographs.</b><p class="muted">Optimized copies are re-encoded without GPS/EXIF metadata before analysis. API usage charges apply.</p></div>
+          <div class="actions">
+            <% if (openAIVisionConfigured) { %><button name="provider" value="openai" class="primary" <%= hasImage ? '' : 'disabled' %>><%= project.analysis ? 'Analyze again with GPT' : 'Analyze with GPT' %></button><% } %>
+            <% if (claudeVisionConfigured) { %><button name="provider" value="claude" class="<%= openAIVisionConfigured ? 'secondary' : 'primary' %>" <%= hasImage ? '' : 'disabled' %>><%= project.analysis ? 'Analyze again with Claude' : 'Analyze with Claude' %></button><% } %>
+          </div>
+        </div>
+      <% } else { %>
+        <p class="muted analysis-note">Add OPENAI_API_KEY or ANTHROPIC_API_KEY to your environment to enable AI photo analysis. The free template generator below works without either.</p>
+      <% } %>
+    </form>
+  </section>
+  <section id="analysis" class="analysis-section">
+    <p class="eyebrow">AI IMAGE ANALYSIS</p>
+    <% if (!project.analysis) { %><div class="empty"><h3>No visual analysis yet.</h3><p>Select photographs above, then run the secure analysis. You will review its observations before generating captions.</p></div><% } else { %>
+      <form class="panel stack" method="post" action="/projects/<%= project.id %>/analysis">
+        <div class="analysis-meta"><span class="status <%= project.analysis.reviewStatus === 'reviewed' ? 'approved' : 'draft' %>"><%= project.analysis.reviewStatus %></span><span><%= project.analysis.imageCount %> images · <%= project.analysis.model %></span></div>
+        <label>Visual summary<textarea name="summary" required><%= project.analysis.summary %></textarea></label>
+        <div class="two-col"><label>Observed stage<input name="observedStage" value="<%= project.analysis.observedStage %>"></label><label>Room or surface<input name="roomOrSurface" value="<%= project.analysis.roomOrSurface %>"></label></div>
+        <div class="analysis-grid"><article><h3>Visible equipment &amp; setup</h3><ul><% project.analysis.visibleMaterials.forEach(item => { %><li><%= item %></li><% }) %></ul></article><article><h3>Performance details</h3><ul><% project.analysis.craftsmanshipDetails.forEach(item => { %><li><%= item %></li><% }) %></ul></article><article class="privacy-card"><h3>Privacy flags</h3><ul><% project.analysis.privacyFlags.forEach(item => { %><li><%= item %></li><% }) %></ul></article><article><h3>Photo-quality notes</h3><ul><% project.analysis.qualityNotes.forEach(item => { %><li><%= item %></li><% }) %></ul></article></div>
+        <div class="recommendation"><b>Recommended lead image: <%= project.analysis.bestImage %></b><p><%= project.analysis.bestImageReason %></p></div>
+        <% if (project.analysis.uncertainties.length) { %><div class="uncertainty"><b>Confirm before publishing</b><ul><% project.analysis.uncertainties.forEach(item => { %><li><%= item %></li><% }) %></ul></div><% } %>
+        <button class="primary">Confirm and save analysis</button>
+      </form><p class="muted analysis-note">AI observations can be wrong. Confirm equipment, timing, and privacy before publishing.</p>
+    <% } %>
+  </section>
+  <section id="drafts" class="draft-section">
+    <p class="eyebrow">DRAFT WORKSPACE</p>
+    <% if (published) { %><div class="notice">Published successfully to <%= published.split(',').join(' and ') %>.</div><% } %>
+    <% if (!project.drafts.length) { %><div class="empty"><h3>Ready for the first draft set.</h3><p><%= project.analysis ? 'Review the analysis above, then generate captions informed by the visible details.' : 'You can use the built-in generator now or analyze the photographs first.' %></p></div><% } %>
+    <div class="draft-grid"><% project.drafts.forEach(draft => { %>
+      <article class="draft-card">
+        <form method="post" action="/projects/<%= project.id %>/drafts/<%= draft.id %>">
+          <div class="draft-title"><h3><%= draft.format %></h3><span class="status <%= draft.status %>"><%= draft.status %></span></div>
+          <textarea name="body"><%= draft.body %></textarea>
+          <div class="actions"><button type="button" class="secondary copy-button">Copy</button><button name="status" value="draft" class="secondary">Save draft</button><button name="status" value="approved" class="primary">Approve</button></div>
+        </form>
+        <% if (draft.status === 'approved') { %>
+          <form class="publish-box" method="post" action="/projects/<%= project.id %>/drafts/<%= draft.id %>/publish">
+            <b>Publish approved content</b>
+            <% if (!metaConnection) { %><p class="muted">Connect Meta before publishing.</p><a class="button secondary" href="/settings/meta">Set up Meta</a><% } else { %>
+              <label>Photograph<select name="mediaId" required><option value="">Select one…</option><% project.files.filter(file => file.mimeType.startsWith('image/')).forEach(file => { %><option value="<%= file.id %>"><%= file.originalName %></option><% }) %></select></label>
+              <label>Destination<select name="platform" required><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="both">Facebook and Instagram</option></select></label>
+              <button class="primary" onclick="return confirm('Publish this approved caption and photograph now?')">Publish now</button>
+            <% } %>
+          </form>
+        <% } %>
+        <% if (draft.publications?.length) { %><div class="publication-log"><b>Publication history</b><ul><% draft.publications.forEach(item => { %><li><%= item.platform %> · <%= new Date(item.publishedAt).toLocaleString() %> · <%= item.postId %></li><% }) %></ul></div><% } %>
+      </article>
+    <% }) %></div>
+  </section>
+</main><%- include('partials/foot') %>

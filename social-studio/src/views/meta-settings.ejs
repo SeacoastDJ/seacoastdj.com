@@ -1,0 +1,19 @@
+<%- include('partials/head') %><%- include('partials/nav') %>
+<main class="container narrow">
+  <a href="/" class="back">← Dashboard</a>
+  <p class="eyebrow">PUBLISHING CONNECTION</p><h1>Meta accounts</h1>
+  <% if (message) { %><div class="notice"><%= message %></div><% } %>
+  <section class="panel stack">
+    <% if (connection) { %>
+      <span class="status approved">Connected</span>
+      <div class="connection-details"><div><small>Facebook Page</small><b><%= connection.pageName %></b></div><div><small>Instagram</small><b><%= connection.instagramUsername ? `@${connection.instagramUsername}` : connection.instagramAccountId %></b></div><div><small>Connected</small><b><%= new Date(connection.connectedAt).toLocaleString() %></b></div></div>
+      <p class="muted">Social Studio stores the authorization token encrypted. Publishing still requires an approved draft and an explicitly selected image.</p>
+      <div class="actions"><a class="button primary" href="/auth/meta">Reconnect accounts</a><form method="post" action="/settings/meta/disconnect"><button class="secondary">Disconnect</button></form></div>
+    <% } else { %>
+      <span class="status draft">Not connected</span>
+      <h2>Connect Seacoast DJ</h2>
+      <p>Authorize the Facebook Page and connected professional Instagram account. Meta will ask you to select both business assets.</p>
+      <% if (metaConfigured) { %><a class="button primary" href="/auth/meta">Connect Facebook and Instagram</a><% } else { %><div class="uncertainty"><b>Environment setup required</b><p>Add the Meta App ID, App Secret, Configuration ID, callback URL, encryption key, and media-signing secret to the server.</p></div><% } %>
+    <% } %>
+  </section>
+</main><%- include('partials/foot') %>
