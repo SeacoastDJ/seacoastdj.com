@@ -78,8 +78,14 @@ app.post('/logout', requireAuth, (req, res) => req.session.destroy(() => res.red
 app.get('/', requireAuth, async (req, res) => {
   const projects = await store.listProjects();
   const counts = projects.reduce((a, p) => { a[p.status] = (a[p.status] || 0) + 1; return a; }, {});
-  const metaConnection = await metaStore.getConnectionSummary();
-  res.render('dashboard', base(req, { projects, counts, metaConnection, metaConfigured: meta.isConfigured() }));
+  const connection = await metaStore.getConnection();
+  const metaConnection = connection ? (({ accessToken, ...summary }) => summary)(connection) : null;
+  let followerCounts = null;
+  if (connection) {
+    try { followerCounts = await meta.getFollowerCounts(connection); }
+    catch (error) { console.error('Follower count fetch failed:', error.message); }
+  }
+  res.render('dashboard', base(req, { projects, counts, metaConnection, metaConfigured: meta.isConfigured(), followerCounts }));
 });
 
 app.get('/settings/meta', requireAuth, async (req, res) => {

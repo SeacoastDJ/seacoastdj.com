@@ -72,6 +72,18 @@ exports.publishInstagramPhoto = async ({ instagramAccountId, accessToken, imageU
   return graph(`/${instagramAccountId}/media_publish`, { method: 'POST', body: publishBody });
 };
 
+exports.getFollowerCounts = async ({ pageId, instagramAccountId, accessToken }) => {
+  const pageQuery = new URLSearchParams({ fields: 'fan_count', access_token: accessToken });
+  const pagePromise = graph(`/${pageId}?${pageQuery}`);
+  const igQuery = instagramAccountId ? new URLSearchParams({ fields: 'followers_count', access_token: accessToken }) : null;
+  const igPromise = igQuery ? graph(`/${instagramAccountId}?${igQuery}`) : Promise.resolve(null);
+  const [page, instagram] = await Promise.all([pagePromise, igPromise]);
+  return {
+    pageFanCount: typeof page.fan_count === 'number' ? page.fan_count : null,
+    instagramFollowers: instagram && typeof instagram.followers_count === 'number' ? instagram.followers_count : null
+  };
+};
+
 exports.signMediaUrl = ({ origin, projectId, mediaId, ttlSeconds = 900 }) => {
   const expires = Math.floor(Date.now() / 1000) + ttlSeconds;
   const payload = `${projectId}:${mediaId}:${expires}`;
