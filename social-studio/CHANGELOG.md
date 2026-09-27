@@ -11,3 +11,9 @@ Forked from Top Shelf Social Studio v1.2.0 (built for a different business, Top 
 - Reused the Meta OAuth/publish integration (`meta-service.js`, `meta-store.js`) essentially unchanged — it was already env-var driven with no business-specific logic.
 
 Version reset to 1.0.0 for the fork; the source app's v1.0–v1.2 release notes and upgrade guides (Top Shelf Tile-specific) were not carried over.
+
+## Unreleased
+
+- Dashboard now shows live Facebook Page and Instagram follower counts once Meta is connected (`meta.getFollowerCounts`), using permissions already granted.
+- Replaced the inherited warm gold/cream palette with Seacoast DJ's real dark, Rane-inspired cyan/amber brand colors across all three stylesheets.
+- Added an optional second upload path: `src/drive-service.js` imports event photos from a shared Google Drive folder via a service account (one subfolder per event/project). Fully optional — see `INSTALL-DRIVE.md`; the app works unchanged without it.

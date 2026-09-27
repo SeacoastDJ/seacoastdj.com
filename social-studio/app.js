@@ -15,6 +15,7 @@ const { analyzeProject: analyzeProjectOpenAI } = require('./src/vision-service')
 const { analyzeProject: analyzeProjectClaude } = require('./src/claude-vision-service');
 const metaStore = require('./src/meta-store');
 const meta = require('./src/meta-service');
+const drive = require('./src/drive-service');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -117,7 +118,38 @@ app.post('/settings/meta/disconnect', requireAuth, async (_req, res, next) => {
   catch (error) { next(error); }
 });
 
-app.get('/projects/new', requireAuth, (req, res) => res.render('new-project', base(req)));
+app.get('/projects/new', requireAuth, async (req, res) => {
+  const driveConfigured = drive.isConfigured();
+  let driveFolders = [];
+  let driveError = null;
+  if (driveConfigured) {
+    try { driveFolders = await drive.listEventFolders(); }
+    catch (error) { driveError = error.message; }
+  }
+  res.render('new-project', base(req, { driveConfigured, driveFolders, driveError }));
+});
+
+app.post('/projects/import-drive', requireAuth, async (req, res, next) => {
+  try {
+    if (!drive.isConfigured()) throw new Error('Google Drive import is not configured.');
+    if (!req.body.driveFolderId) throw new Error('Select a Google Drive folder to import.');
+    const downloaded = await drive.downloadFolderImages(req.body.driveFolderId, uploadRoot, crypto.randomUUID());
+    if (!downloaded.length) throw new Error('No JPG, PNG, or WebP images were found in that Drive folder.');
+    const project = await store.createProject({
+      title: req.body.title,
+      town: req.body.town,
+      vertical: req.body.vertical,
+      materials: req.body.materials,
+      features: req.body.features,
+      stage: req.body.stage,
+      privacyApproved: req.body.privacyApproved === 'yes',
+      hideIdentity: req.body.hideIdentity === 'yes',
+      exactLocationAllowed: req.body.exactLocationAllowed === 'yes',
+      files: downloaded
+    });
+    res.redirect(`/projects/${project.id}`);
+  } catch (error) { next(error); }
+});
 app.post('/projects', requireAuth, upload.array('media', 12), async (req, res) => {
   const project = await store.createProject({
     title: req.body.title,
@@ -226,7 +258,7 @@ app.post('/projects/:id/drafts/:draftId/publish', requireAuth, async (req, res, 
 
 app.use((err, req, res, _next) => {
   console.error(err);
-  const safeApiMessage = /OPENAI_API_KEY|ANTHROPIC_API_KEY|META_|Meta|Select at least|approved draft|photograph|Facebook|Instagram|AI response|JSON|API|quota|billing|model/i.test(err.message || '') ? err.message : null;
+  const safeApiMessage = /OPENAI_API_KEY|ANTHROPIC_API_KEY|GOOGLE_|Drive|META_|Meta|Select at least|approved draft|photograph|Facebook|Instagram|AI response|JSON|API|quota|billing|model/i.test(err.message || '') ? err.message : null;
   const message = err.code === 'LIMIT_FILE_SIZE' ? 'One of the files is larger than the configured upload limit.' : safeApiMessage || 'Something went wrong.';
   res.status(400).render('error', base(req, { message }));
 });
