@@ -9,7 +9,9 @@
     "dev": "node --watch app.js",
     "test": "node --test"
   },
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.2",
@@ -21,6 +23,6 @@
     "helmet": "^8.1.0",
     "multer": "^2.0.2",
     "openai": "^5.20.1",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.5"
   }
 }
