@@ -64,6 +64,7 @@ RewriteRule ^weddings/recommended-venues\.php$ https://seacoastdj.com/weddings/ 
 RewriteRule ^weddings/friends-affiliates\.php$ https://seacoastdj.com/weddings/ [R=301,L]
 RewriteRule ^weddings/gigbuilder-wedding-outline\.html$ https://seacoastdj.com/weddings/ [R=301,L]
 RewriteRule ^weddings/equipment\.php$ https://seacoastdj.com/gear.html [R=301,L]
+RewriteRule ^weddings/event-planning\.php$ https://seacoastdj.com/weddings/event-planning.html [R=301,L]
 RewriteRule ^weddings/email-anniversary\.html$ https://seacoastdj.com/private/ [R=301,L]
 
 # Canonicalize host: www.seacoastdj.com served the full site with no redirect
