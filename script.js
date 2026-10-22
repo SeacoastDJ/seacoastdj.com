@@ -68,6 +68,31 @@ document.querySelectorAll('.btn, .footer-btn').forEach((el) => {
   el.addEventListener('animationend', () => el.classList.remove('is-pressed'));
 });
 
+// Crate Runner badge: a spinning-record sticker in the corner of every page that
+// links to /game.html, kept out of the nav on purpose. Injected here (before the
+// GA4 block) so its data-cta click is tracked like any other CTA. Hiding it lasts
+// for the browser session.
+(function gameBadge() {
+  const KEY = 'sdj-game-badge-hidden';
+  try {
+    if (sessionStorage.getItem(KEY)) return;
+  } catch (error) { /* storage blocked: just show the badge */ }
+
+  const wrap = document.createElement('div');
+  wrap.className = 'game-badge-wrap';
+  wrap.innerHTML =
+    '<a class="game-badge" href="/game.html" data-cta="Play Crate Runner (Badge)" aria-label="Play Crate Runner, the Seacoast DJ arcade game">' +
+      '<span class="game-badge-disc" aria-hidden="true"></span>' +
+      '<span class="game-badge-text"><small>Free arcade game</small>Play Crate Runner</span>' +
+    '</a>' +
+    '<button class="game-badge-close" type="button" aria-label="Hide the game badge">&times;</button>';
+  wrap.querySelector('.game-badge-close').addEventListener('click', () => {
+    wrap.remove();
+    try { sessionStorage.setItem(KEY, '1'); } catch (error) { /* ignore */ }
+  });
+  document.body.appendChild(wrap);
+})();
+
 // GA4 lead-funnel tracking. Runs on every page that loads gtag.js + script.js.
 (function trackLeadFunnel() {
   if (typeof window.gtag !== 'function') return;
