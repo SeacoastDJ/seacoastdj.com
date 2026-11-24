@@ -17,6 +17,14 @@ document.querySelectorAll('.modal-overlay').forEach((overlay) => {
   });
 });
 
+// Deep link: /?check=1 or #check-availability opens the Check Availability modal on load
+// (used by the email signature button). Tracked below as cta_location "Direct Link".
+const autoOpenAvailability =
+  (new URLSearchParams(window.location.search).get('check') === '1' ||
+    window.location.hash === '#check-availability') &&
+  document.getElementById('gigbuilder-modal');
+if (autoOpenAvailability) autoOpenAvailability.classList.add('is-open');
+
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
   document.querySelectorAll('.modal-overlay.is-open').forEach((overlay) => {
@@ -115,6 +123,13 @@ document.querySelectorAll('.btn, .footer-btn').forEach((el) => {
   // be measured per placement. cta_location comes from the "(Placement)" in data-cta.
   const availabilityVertical = document.body.dataset.eventCategory || 'general';
   let lastOpenLocation = 'unknown';
+  if (autoOpenAvailability) {
+    lastOpenLocation = 'Direct Link';
+    window.gtag('event', 'check_availability_open', {
+      cta_location: lastOpenLocation,
+      event_category: availabilityVertical
+    });
+  }
   document.querySelectorAll('[data-modal-target="gigbuilder-modal"]').forEach((el) => {
     el.addEventListener('click', () => {
       const placement = (el.dataset.cta || '').match(/\(([^)]+)\)/);
