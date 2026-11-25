@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Free Arcade Games | Seacoast DJ</title>
+<meta name="description" content="Three free arcade games from Seacoast DJ: Crate Runner, Zombie Fighters, and Scarecrow Roundup. No downloads, no sign-up. Play on your phone or computer." />
+<link rel="canonical" href="https://seacoastdj.com/games/" />
+<link rel="icon" type="image/png" href="/images/SEACOASTDJ-2025-LOGO.png" />
+<link rel="apple-touch-icon" href="/images/SEACOASTDJ-2025-LOGO.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://seacoastdj.com/games/" />
+<meta property="og:title" content="Free Arcade Games | Seacoast DJ" />
+<meta property="og:description" content="Crate Runner, Zombie Fighters, and Scarecrow Roundup. Free to play in your browser." />
+<meta property="og:image" content="https://seacoastdj.com/images/game/seacoastdj-craterunner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Bangers&family=Lilita+One&family=Chakra+Petch:wght@400;600&family=Silkscreen&display=swap">
+<!-- No GA4 here or on the kids game pages on purpose (COPPA). Ask Billy before adding tracking. -->
+<style>
+/* Layout: arcade lobby. A marquee header, then one cabinet card per game; each card's art uses that game's own colors and display face. Single night-arcade look, matching Crate Runner. */
+:root{
+  --night:#0c0a1e; --panel:#17132f; --line:#2b2552; --ink:#f1edff; --dim:#a7a1c9;
+  --cyan:#33dcff; --amber:#ffb340; --pink:#ff4fa8;
+  --display:'Bungee','Arial Black',Impact,sans-serif;
+  --pixel:'Silkscreen','Courier New',monospace;
+  --body:'Chakra Petch',system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--night);color:var(--ink);font-family:var(--body);
+  background-image:radial-gradient(ellipse at 50% 0%,rgba(255,79,168,.16),transparent 60%),radial-gradient(ellipse at 50% 100%,rgba(51,220,255,.10),transparent 55%);
+  padding-top:max(16px,env(safe-area-inset-top,0px));padding-bottom:max(24px,env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:600}
+.brand img{width:40px;height:40px;border-radius:50%}
+.top a.home{font-family:var(--pixel);font-size:12px;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+header.marquee{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+.eyebrow{font-family:var(--pixel);font-size:12px;letter-spacing:.1em;color:var(--amber);text-transform:uppercase;margin:0}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,9vw,72px);line-height:.9;margin:0;color:var(--cyan);text-shadow:4px 4px 0 var(--pink);text-wrap:balance}
+.lede{margin:0;max-width:52ch;font-size:17px;line-height:1.5;color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+.game{display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 0 0 2px var(--line);color:var(--ink);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.game:hover,.game:focus-visible{transform:translateY(-4px);box-shadow:0 0 0 2px var(--cyan),0 18px 40px rgba(51,220,255,.18);outline:none}
+.art{aspect-ratio:16/10;max-width:100%;display:grid;place-items:center;padding:16px;text-align:center;position:relative;overflow:hidden}
+.art span{position:relative;line-height:.9}
+.art.crate{background:radial-gradient(circle at 50% 120%,#ff4fa8 0,transparent 55%),#0c0a1e;background-size:cover}
+.art.crate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.art.zombie{background:radial-gradient(circle at 30% 30%,#5b3b8c,transparent 60%),#1d1640}
+.art.zombie span{font-family:'Bangers',Impact,sans-serif;font-size:56px;letter-spacing:2px;color:#7ee05a;-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000;transform:rotate(-4deg)}
+.art.scare{background:linear-gradient(#5cc2ff 0 55%,#c9a85a 55%)}
+.art.scare span{font-family:'Lilita One','Arial Black',sans-serif;font-size:46px;color:#d8432f;text-shadow:3px 3px 0 #fff6e0}
+.info{display:flex;flex-direction:column;gap:8px;padding:16px 18px 18px;flex:1}
+.info h2{font-family:var(--display);font-weight:400;font-size:22px;margin:0;color:var(--ink)}
+.info p{margin:0;font-size:15px;line-height:1.45;color:var(--dim);flex:1}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-family:var(--pixel);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:4px;background:var(--line);color:var(--ink)}
+.play{align-self:flex-start;font-family:var(--display);font-size:15px;padding:9px 16px;border-radius:8px;background:var(--cyan);color:#06101a;box-shadow:0 4px 0 #0d7a99}
+.parents{border-top:1px solid var(--line);padding-top:20px;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+.parents h3{font-family:var(--pixel);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:0}
+.parents p{margin:0;font-size:15px;line-height:1.5;color:var(--dim)}
+footer{font-size:14px;color:var(--dim);display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.game{transition:none}.game:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/"><img src="/images/SEACOASTDJ-2025-LOGO.png" alt="">Seacoast DJ</a>
+    <a class="home" href="/">Back to SeacoastDJ.com</a>
+  </div>
+
+  <header class="marquee">
+    <p class="eyebrow">Seacoast DJ Arcade</p>
+    <h1>Free Arcade Games</h1>
+    <p class="lede">Pick a game and play right in your browser. No downloads, no sign-up. Works on your phone or computer.</p>
+  </header>
+
+  <main class="grid">
+    <a class="game" href="/game.html">
+      <div class="art crate"><img src="/images/game/seacoastdj-craterunner.jpg" alt="Crate Runner title art"></div>
+      <div class="info">
+        <h2>Crate Runner</h2>
+        <p>Hoverboard through a three-day music festival and toss records to every DJ booth.</p>
+        <div class="tags"><span class="tag">Arcade</span><span class="tag">All ages</span></div>
+        <span class="play">Play</span>
+      </div>
+    </a>
+    <a class="game" href="/games/zombie-fighters.html">
+      <div class="art zombie"><span>Zombie<br>Fighters</span></div>
+      <div class="info">
+        <h2>Zombie Fighters</h2>
+        <p>Drag to move and your hero swings on his own. Bonk goofy cartoon zombies, grab coins, then shop for 61 silly weapons, hats, and armor.</p>
+        <div class="tags"><span class="tag">Kids 6+</span><span class="tag">Shop &amp; upgrade</span></div>
+        <span class="play">Play</span>
+      </div>
+    </a>
+    <a class="game" href="/games/scarecrow-roundup.html">
+      <div class="art scare"><span>Scarecrow<br>Roundup</span></div>
+      <div class="info">
+        <h2>Scarecrow Roundup</h2>
+        <p>Tap a scarecrow to throw your lasso. Gold ones are worth 5, crows are worth 3. Beat the clock to reach the next level.</p>
+        <div class="tags"><span class="tag">Kids 6+</span><span class="tag">Tap to play</span></div>
+        <span class="play">Play</span>
+      </div>
+    </a>
+  </main>
+
+  <section class="parents">
+    <h3>For parents</h3>
+    <p>Zombie Fighters and Scarecrow Roundup were dreamed up by a young gamer and built for kids. They're cartoony with no blood, no ads, and no accounts. Progress saves on your device only.</p>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Seacoast DJ</span>
+    <a href="/">SeacoastDJ.com</a>
+    <a href="/contact.html">Book a real DJ</a>
+  </footer>
+</div>
+</body>
+</html>

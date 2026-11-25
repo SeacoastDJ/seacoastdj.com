@@ -343,7 +343,7 @@ function show(html,label,fn){
 }
 function hide(){ov.hidden=true;cv.focus?.()}
 const hiLine=()=>`<div class="hi">Best ${String(hi).padStart(6,'0')}</div>`;
-const siteLinks=()=>`<div class="links"><a href="/" data-cta="Back to Site (Game)">SeacoastDJ.com</a><a href="/contact.html" data-cta="Book a Real DJ (Game)">Book a real DJ</a></div>`;
+const siteLinks=()=>`<div class="links"><a href="/" data-cta="Back to Site (Game)">SeacoastDJ.com</a><a href="/contact.html" data-cta="Book a Real DJ (Game)">Book a real DJ</a><a href="/games/">More free games</a></div>`;
 // GA4: same cta_click event script.js sends; the links are created after load, so delegate.
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-cta]');
